@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="shortcut icon" href="imgs/7133364.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main>
+        <div class="search-part">
+            <input type="text" placeholder="Location Name..." id="cityName">
+            <button id="getCityName"><img src="https://img.icons8.com/?size=30&id=7695&format=png&color=000000"
+                    alt="Search Icon"></button>
+        </div>
+        <div class="main-part">
+            <img src="imgs/7133364.png" alt="Cloud Sun Icon">
+            <h1 class="temperature"></h1>
+            <h2 class="city-name"></h2>
+            <p class="weekday"></p>
+        </div>
+        <div class="add-infos">
+            <div class="infos-area">
+                <img src="https://img.icons8.com/?size=100&id=18504&format=png&color=FFFFFF" alt="Moisture Icon">
+                <div>
+                    <h3 class="humidity"></h3>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="infos-area">
+                <img src="https://img.icons8.com/?size=100&id=gldfz0yEmUoe&format=png&color=FFFFFF" alt="Wind Icon">
+                <div>
+                    <h3 class="wind"></h3>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
