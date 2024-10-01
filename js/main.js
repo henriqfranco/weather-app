@@ -11,7 +11,11 @@ const cityInput = document.getElementById('cityName');
 function getWeatherInfo(url) {
     fetch(url).then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            if (response.status === 404) {
+                throw new Error('Location not found. Please enter a valid name.');
+            } else {
+                throw new Error('There has been a problem with your fetch operation.');
+            }
         }
         return response.json();
     }).then(data => {
@@ -24,8 +28,7 @@ function getWeatherInfo(url) {
         showHumidity.textContent = `${data.main.humidity}%`;
         showWindSpeed.textContent = `${data.wind.speed} km/h`;
     }).catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-        showModal('Location not found. Try Again.');
+        showModal(error.message);
     });
 }
 
@@ -61,14 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 cityNameBtn.addEventListener('click', () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(cityInput.value)}&appid=${apiKey}&units=metric&lang=en_us`;
-
+    if (!cityInput.value.trim()) {
+        showModal('Location name cannot be empty. Please enter a valid name.');
+        return;
+    }
     getWeatherInfo(url);
 })
 
 cityInput.addEventListener('keypress', (event) => {
     if (event.key === "Enter") {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(cityInput.value)}&appid=${apiKey}&units=metric&lang=en_us`;
-
+        if (!cityInput.value.trim()) {
+            showModal('Location name cannot be empty. Please enter a valid name.');
+            return;
+        }
         getWeatherInfo(url);
     }
 })
