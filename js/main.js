@@ -20,7 +20,7 @@ function getWeatherInfo(url) {
         return response.json();
     }).then(data => {
         showTemp.textContent = `${data.main.temp} °C`;
-        showCityName.textContent = `${data.name}, ${data.sys.country}`;
+        showCityName.textContent = data.sys.country ? `${data.name}, ${data.sys.country}` : data.name;
         const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const currentDate = new Date();
         const currentDay = daysOfWeek[currentDate.getDay()];
